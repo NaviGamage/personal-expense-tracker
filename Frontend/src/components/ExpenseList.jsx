@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ExpenseList({ expenses, onDeleteExpense }) {
+function ExpenseList({ expenses, onDeleteExpense, onEditExpense }) {
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
       <div className="p-6 border-b border-gray-50">
@@ -35,7 +35,15 @@ function ExpenseList({ expenses, onDeleteExpense }) {
                   <td className="p-4 font-semibold text-gray-900">
                     LKR {expense.amount.toLocaleString()}
                   </td>
-                  <td className="p-4 text-center">
+                  <td className="p-4 text-center space-x-2">
+                    {/* EDIT BUTTON */}
+                    <button
+                      onClick={() => onEditExpense(expense)}
+                      className="px-3 py-1.5 text-xs font-medium text-blue-600 bg-blue-50 rounded-lg hover:bg-blue-100 transition cursor-pointer"
+                    >
+                      Edit
+                    </button>
+                    {/* DELETE BUTTON */}
                     <button
                       onClick={() => onDeleteExpense(expense._id)}
                       className="px-3 py-1.5 text-xs font-medium text-red-600 bg-red-50 rounded-lg hover:bg-red-100 transition cursor-pointer"
