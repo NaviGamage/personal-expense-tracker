@@ -35,7 +35,7 @@ function App() {
     }
   };
 
-  // 🛠️ 4. Expense එකක් Database එකේ Update කිරීම (PUT)
+  // Update an existing expense
   const handleUpdateExpense = async (id, updatedExpense) => {
     try {
       const response = await axios.put(`${API_URL}/${id}`, updatedExpense);
@@ -87,7 +87,7 @@ function App() {
             <ExpenseList
               expenses={expenses}
               onDeleteExpense={handleDeleteExpense}
-              onEditExpense={(expense) => setEditingExpense(expense)} // Edit ක්ලික් කළ විට state එකට දැමීම
+              onEditExpense={(expense) => setEditingExpense(expense)} // Edit button click sets the expense to be edited
             />
           </>
         )}
