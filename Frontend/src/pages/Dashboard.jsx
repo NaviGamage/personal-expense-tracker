@@ -3,6 +3,7 @@ import axios from 'axios';
 import SummaryCards from '../components/SummaryCards';
 import ExpenseForm from '../components/ExpenseForm';
 import ExpenseList from '../components/ExpenseList';
+import ExpenseChart from '../components/ExpenseChart';
 import { AuthContext } from '../context/AuthContext';
 
 // Fetch the base API URL from environment variables for high flexibility
@@ -92,8 +93,13 @@ function Dashboard() {
           </div>
         ) : (
           <>
+            {/* 1. Summary Cards Section */}
             <SummaryCards expenses={expenses} />
 
+            {/* 📊 2. Premium Category Visualization Chart Section */}
+            <ExpenseChart expenses={expenses} />
+
+            {/* 3. Expense Input Form Section */}
             <ExpenseForm
               onAddExpense={handleAddExpense}
               editingExpense={editingExpense}
@@ -101,6 +107,7 @@ function Dashboard() {
               clearEdit={() => setEditingExpense(null)}
             />
 
+            {/* 4. Expense List Table Section */}
             <ExpenseList
               expenses={expenses}
               onDeleteExpense={handleDeleteExpense}
