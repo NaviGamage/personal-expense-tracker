@@ -6,9 +6,11 @@ const COLORS = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899'
 
 function ExpenseChart({ expenses }) {
   
-  // Helper function to process and aggregate expenses by category
   const processChartData = () => {
-    const categoryTotals = expenses.reduce((acc, expense) => {
+    // 💡 Filter to process ONLY expenses, excluding income
+    const expenseOnly = expenses.filter(item => item.type === 'expense' || !item.type);
+
+    const categoryTotals = expenseOnly.reduce((acc, expense) => {
       const category = expense.category || 'Other';
       const amount = parseFloat(expense.amount) || 0;
       
@@ -19,13 +21,11 @@ function ExpenseChart({ expenses }) {
       return acc;
     }, {});
 
-    // Format data into the array structure required by Recharts
     return Object.keys(categoryTotals).map((category) => ({
       name: category,
       value: categoryTotals[category],
     }));
   };
-
   const chartData = processChartData();
 
   // If there are no expenses, show a friendly fallback message instead of an empty chart

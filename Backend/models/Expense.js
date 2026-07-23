@@ -23,7 +23,14 @@ const ExpenseSchema = new mongoose.Schema({
     date: {
         type: Date,
         default: Date.now
-    }
+    },
+    type: {
+      type: String,
+      enum: ['income', 'expense'],
+      default: 'expense',
+      required: true,
+    },
+
 }, {
     timestamps: true // Automatically adds createdAt and updatedAt fields to the schema
 });
